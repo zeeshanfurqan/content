@@ -6,9 +6,9 @@ lang: en-US
 ---
 
 # Release Notes for Windows 10 IoT Core
-Build Number 16267. August 2017
+Build Number 17083. February 2018
 
-&copy; 2017 Microsoft Corporation. All rights reserved
+&copy; 2018 Microsoft Corporation. All rights reserved
 
 This document provides late-breaking or other information that supplements the documentation included with the Windows 10 IoT Core.
 
@@ -23,23 +23,26 @@ You can review linked terms by pasting the forward link into your browser window
 
 ## What's new in this build: 
 * General bug fixes 
-* Due to the Intel EOL (end-of-life) of Joule, FFUs for Joule will be discontinued soon. No Joule FFU will be released for RS3 RTM. Customers should identify an alternative platform using one of the other support SoCs - <a href="https://developer.microsoft.com/en-us/windows/iot/explore/SoC">more info</a>
-* IOT_WEBB_EXTN feature has been refactored to remove the on boarding feature and the on boarding feature is now available as IOT_ONBOARDING_APP.  With this update, the on boarding feature will be removed and users using the on boarding feature should re-flash their device to get this feature again. 
-* Multi-Lang packages are now available. You can create FFUs supporting multiple languages, see <a href="https://github.com/ms-iot/iot-adk-addonkit/tree/develop/Source-arm/Products/MultiLangSample">MultiLangSample</a> and <a href="https://github.com/ms-iot/iot-adk-addonkit/tree/develop/Source-arm/Products/SingleLangSample">SingleLangSample</a> for more information
-* You can change the system language using IoTSettings.exe. More information is available <a href="https://developer.microsoft.com/en-us/windows/iot/docs/cortanaoniotcore">here</a> in the Language Configuration section.
+* Enabled Flash mode in IOTUAP images.
 
 
 ## Additional Information
-* The BSP version used for our Dragon Board image is 2112.0.0.0 
+* The BSP version used for our Dragon Board image is 2116.0.0.0 
 
 
 ## Known issues in this build:
-* Store published apps aren't able to invoke an exe through Windows.System.ProcessLauncher unless it is signed by Microsoft
-* Visual Studio debugging for Java Script apps is not working.  Apps can be deployed and started without the debugger from Visual Studio.  Apps can also be deployed from Visual Studio and started from the Device Portal or iotstartup.exe
-* Network connectivity failures in MinnowBoard Max (MBM) firmware version 0.93. (Fixed in firmware version 0.94.) 
-* F5 driver deployment from Visual Studio does not work on IoT Core. 
-* Image creation may fail due to InstallOemCerts.cmd command errors. 
-* Background tasks do not appear in the Apps Manager view in Windows Device Portal (WDP).
+* F5 driver deployment from Visual Studio does not work on IoT Core.
+* Devices that were installed via NOOBS cannot run the bcdedit tool to enable the kernel debugger. This can be achieved with the following workaround:
+**	Mount the SD card on your PC
+**	Find the EFIESP drive partition number with diskpart or Disk Management (say it’s “M:”)
+**	Run the command “bcdedit /store M:\EFI\Microsoft\boot\bcd /set {default} debug yes”
+**	Unmount the SD card.
+**	You should now be able to connect the debugger as usual
+*	Microphones are not functional.
+*	The mouse pointer is not visible on Dragon Board images.
+*	Unable to deploy apps in headless mode. Device is not functional in headless mode.
+*	F5 application deployment of headed foreground UWP apps will not work on the first attempt. The second attempt should be successful.
+*	UWP startup apps will be replaced by IoT Core default app.
 
 
 ## Cortana Instructions and Known Issues 
